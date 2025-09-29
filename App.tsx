@@ -22,7 +22,7 @@ const App: React.FC = () => {
     const fetchTestCases = async () => {
       try {
         setIsLoadingManifest(true);
-        const response = await fetch('/data/test-cases.json');
+        const response = await fetch('data/test-cases.json');
         const data = await response.json();
         const cases = data.testCases || [];
         setTestCases(cases);

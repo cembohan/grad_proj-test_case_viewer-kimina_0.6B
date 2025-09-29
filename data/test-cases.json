@@ -3,32 +3,32 @@
     {
       "id": "tc1",
       "name": "Test Case 1",
-      "path": "/data/tc1.json"
+      "path": "data/tc1.json"
     },
     {
       "id": "tc2",
       "name": "Test Case 2",
-      "path": "/data/tc2.json"
+      "path": "data/tc2.json"
     },
     {
       "id": "tc1-clean",
       "name": "Test Case 1 (Cleaned)",
-      "path": "/data/tc1-clean.json"
+      "path": "data/tc1-clean.json"
     },
     {
       "id": "tc2-clean",
       "name": "Test Case 2 (Cleaned)",
-      "path": "/data/tc2-clean.json"
+      "path": "data/tc2-clean.json"
     },
     {
       "id": "tc3",
       "name": "Test Case 3",
-      "path": "/data/tc3.json"
+      "path": "data/tc3.json"
     },
     {
       "id": "tc3-clean",
       "name": "Test Case 3 (Cleaned)",
-      "path": "/data/tc3-clean.json"
+      "path": "data/tc3-clean.json"
     }
   ]
 }
