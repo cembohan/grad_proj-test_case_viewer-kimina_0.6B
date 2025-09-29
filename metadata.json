@@ -1,0 +1,5 @@
+{
+  "name": "Test Case Viewer",
+  "description": "An efficient application for viewing test scenarios and their corresponding results in a clear, side-by-side format, eliminating the need to browse through document files.",
+  "requestFramePermissions": []
+}
