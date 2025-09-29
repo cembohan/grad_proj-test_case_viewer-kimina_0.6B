@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { Result } from '../types';
+import type { Result } from '../types.ts';
 
 interface ResultSelectorProps {
   results: Result[];

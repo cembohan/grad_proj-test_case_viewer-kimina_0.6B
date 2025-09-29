@@ -1,6 +1,6 @@
 
 import React from 'react';
-import type { TestCase } from '../types';
+import type { TestCase } from '../types.ts';
 
 interface TabsProps {
   items: Pick<TestCase, 'id' | 'name'>[];

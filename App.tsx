@@ -1,8 +1,9 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
-import type { TestCase } from './types';
-import Tabs from './components/Tabs';
-import ResultSelector from './components/ResultSelector';
-import DisplayBox from './components/DisplayBox';
+import type { TestCase } from './types.ts';
+import Tabs from './components/Tabs.tsx';
+import ResultSelector from './components/ResultSelector.tsx';
+import DisplayBox from './components/DisplayBox.tsx';
 
 interface TestCaseInfo {
   id: string;
