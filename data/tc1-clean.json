@@ -1,0 +1,58 @@
+{
+  "id": "tc1-clean",
+  "name": "Test Case 1 (Cleaned)",
+  "problem": "The sum of two even integers is an even integer.\n\n**Expected Lean 4 Output:**\n```lean\ntheorem sum_of_evens_is_even (m n : ℤ) : Even m → Even n → Even (m + n) :=\n```",
+  "systemPrompt": "\"\"\"You are an expert programmer and mathematician specializing in the Lean 4 theorem prover. Your sole task is to translate natural language mathematical problems into formal, syntactically correct Lean 4 statements. Do not provide explanations or any text other than the formal statement itself.\n\n### Example Problem:\nLet n be an integer. If n^2 is even, then n is even.\n\n### Example Formal Statement:\n```lean\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n :=\n```\n\n---\n\"\"\"",
+  "results": [
+    {
+      "id": "tc1-clean-r1",
+      "name": "Result 1",
+      "content": "```lean\nomega\n```"
+    },
+    {
+      "id": "tc1-clean-r2",
+      "name": "Result 2",
+      "content": "```lean\nintro h\n```"
+    },
+    {
+      "id": "tc1-clean-r3",
+      "name": "Result 3",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      <;> omega\n    have h3 : Even (n ^ 2) := h\n    rcases h3 with ⟨k, hk⟩\n    omega\n```"
+    },
+    {
+      "id": "tc1-clean-r4",
+      "name": "Result 4",
+      "content": "<think>\n# Solving the Even Integers Sum Problem in Lean 4\n\nWe need to prove that the sum of two even integers is even. Let's think about how to approach this.\n\nFirst, what does it mean for an integer to be even? An even integer is divisible by 2. So, we can write an integer $n$ as $2k$ for some integer $k$.\n\nNow, if we have two even integers, let's say $a$ and $b$. Both $a$ and $b$ are even, so we can write $a = 2m$ and $b = 2p$ for some integers $m$ and $p$.\n\nThen, the sum $a + b = 2m + 2p = 2(m + p)$, which is clearly even because it's divisible by 2.\n\nSo, we need to formalize this in Lean 4. Let's look at how we can structure the proof.\n\nWe need to show that if $n^2$ is even, then $n$ is even. Wait, actually, the problem is that we need to prove that the sum of two even integers is even. Let's think about how to express this.\n\nWait, the problem statement says \"If n^2 is even, then n is even\". But we need to prove that the sum of two even integers is even. Let's check the formal statement again.\n\nThe formal statement is: `theorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n :=`\n\nSo, this is saying that if $n^2$ is even, then $n$ is even. But this is not what we need to prove. We need to prove that the sum of two even integers is even. Let's check the formal statement again.\n\nWait, maybe the formal statement is written incorrectly. Let's check the original problem again.\n\nOriginal problem: \"Let n be an integer. If n^2 is even, then n is even.\"\n\nBut this is not what we need to prove. We need to prove that the sum of two even integers is even. Let's check the formal statement again.\n\nWait, maybe the formal statement is written correctly, and we need to prove that if $n^2$ is even, then $n$ is even. Let's think about this.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n = 2k$ for some integer $k$, so $n^2 = (2k)^2 = 4k^2$ which is even. So $n^2$ is even implies $n$ is even. So this is the right implication. So the theorem is correct. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is odd, then $n \\equiv 1 \\pmod{2}$, so $n^2 \\equiv 1^2 \\equiv 1 \\pmod{2}$. So $n^2 \\equiv 1 \\pmod{2}$, which is odd. So if $n^2$ is even, then $n$ must be even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n = 2k$ for some integer $k$, so $n^2 = 4k^2$ which is even. So $n^2$ is even implies $n$ is even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n = 2k$ for some integer $k$, so $n^2 = 4k^2$ which is even. So $n^2$ is even implies $n$ is even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is odd, then $n \\equiv 1 \\pmod{2}$, so $n^2 \\equiv 1^2 \\equiv 1 \\pmod{2}$. So $n^2 \\equiv 1 \\pmod{2}$, which is odd. So if $n^2$ is even, then $n$ must be even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n^2$ is even. If $n$ is odd, then $n^2$ is odd. So if $n^2$ is even, then $n$ must be even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n^2$ is even. If $n$ is odd, then $n^2$ is odd. So if $n^2$ is even, then $n$ must be even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n^2$ is even. If $n$ is odd, then $n^2$ is odd. So if $n^2$ is even, then $n$ must be even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n^2$ is even. If $n$ is odd, then $n^2$ is odd. So if $n^2$ is even, then $n$ must be even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $n^2 \\equiv 0 \\pmod{2}$ implies that $n^2$ is even. But $n^2$ is even only if $n$ is even. Wait, let's check.\n\nIf $n$ is even, then $n^2$ is even. If $n$ is odd, then $n^2$ is odd. So if $n^2$ is even, then $n$ must be even. So this is the right implication. So we need to prove that if $n^2$ is even, then $n$ is even.\n\nSo how to prove this. Let's think.\n\nIf $n^2$ is even, then $n^2 \\equiv 0 \\pmod{2}$. But $\\n</think>"
+    },
+    {
+      "id": "tc1-clean-r5",
+      "name": "Result 5",
+      "content": "```lean\ncontradiction\n```"
+    },
+    {
+      "id": "tc1-clean-r6",
+      "name": "Result 6",
+      "content": "```lean\nintro h\n```"
+    },
+    {
+      "id": "tc1-clean-r7",
+      "name": "Result 7",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n : ℤ) % 2 = 1 := h1\n    have h3 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h4 : n % 2 = 1 := h2\n      have h5 : n ^ 2 % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h4]\n      omega\n    have h4 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc1-clean-r8",
+      "name": "Result 8",
+      "content": "```lean\nintro h\nrcases h with ⟨k, hk⟩\n```"
+    },
+    {
+      "id": "tc1-clean-r9",
+      "name": "Result 9",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : n % 2 = 1 := h1\n    have h3 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h4 : n % 2 = 1 := h2\n      simp [pow_two, Int.add_emod, Int.mul_emod, h4]\n    have h4 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc1-clean-r10",
+      "name": "Result 10",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      have h4 : n ^ 2 % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    }
+  ]
+}

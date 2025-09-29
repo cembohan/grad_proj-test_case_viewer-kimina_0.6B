@@ -11,7 +11,7 @@ interface TabsProps {
 const Tabs: React.FC<TabsProps> = ({ items, activeId, onSelect }) => {
   return (
     <div className="flex flex-wrap border-b border-slate-300">
-      {items.map((item) => (
+      {Array.isArray(items) && items.map((item) => (
         <button
           key={item.id}
           onClick={() => onSelect(item.id)}

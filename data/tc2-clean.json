@@ -1,0 +1,108 @@
+{
+  "id": "tc2-clean",
+  "name": "Test Case 2 (Cleaned)",
+  "problem": "The product of two non-negative real numbers is non-negative.\n\n**Expected Lean 4 Output:**\n```lean\ntheorem product_of_non_neg_is_non_neg (x y : ℝ) : x ≥ 0 → y ≥ 0 → x * y ≥ 0 :=\n```",
+  "systemPrompt": "\"\"\"You are an expert programmer and mathematician specializing in the Lean 4 theorem prover. Your sole task is to translate natural language mathematical problems into formal, syntactically correct Lean 4 statements. Do not provide explanations or any text other than the formal statement itself.\n\n### Example Problem:\nLet n be an integer. If n^2 is even, then n is even.\n\n### Example Formal Statement:\n```lean\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n :=\n```\n\n---\n\"\"\"",
+  "results": [
+    {
+      "id": "tc2-clean-r1",
+      "name": "Result 1",
+      "content": "```lean\nomega\n```"
+    },
+    {
+      "id": "tc2-clean-r2",
+      "name": "Result 2",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : (n : ℤ) % 2 = 0 := by\n      omega\n    exact ⟨n / 2, by omega⟩\n  · -- n is odd\n    have h2 : n % 2 = 1 := by\n      omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h4 : n % 2 = 1 := h2\n      simp [pow_two, Int.add_emod, Int.mul_emod, h4]\n    have h4 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r3",
+      "name": "Result 3",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : (n : ℤ) % 2 = 0 := by\n      omega\n    exact ⟨n / 2, by omega⟩\n  · -- n is odd\n    have h2 : (n : ℤ) % 2 = 1 := by\n      omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h4 : n % 2 = 1 := h2\n      have h5 : (n ^ 2 : ℤ) % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h4]\n      exact h5\n    have h4 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r4",
+      "name": "Result 4",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : (n ^ 2 : ℤ) % 2 = 0 := by\n      have h3 : n % 2 = 0 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n    have h3 : n % 2 = 0 := by\n      by_contra h4\n      push_neg at h4\n      have h4' : n % 2 = 1 := by\n        omega\n      have h5 : (n ^ 2 : ℤ) % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h4']\n      omega\n    have : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact this\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r5",
+      "name": "Result 5",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact this\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      <;> omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r6",
+      "name": "Result 6",
+      "content": "```lean\nhave h3 : (n ^ 2 : ℤ) % 2 = 1 := by\n  have h4 : n % 2 = 1 := h2\n  have h5 : n ^ 2 % 2 = 1 := by\n    simp [pow_two, Int.add_emod, Int.mul_emod, h4]\n  omega\n```"
+    },
+    {
+      "id": "tc2-clean-r7",
+      "name": "Result 7",
+      "content": "```lean\nrcases h with ⟨k, hk⟩\n```"
+    },
+    {
+      "id": "tc2-clean-r8",
+      "name": "Result 8",
+      "content": "```lean\nhave h3 : (n ^ 2) % 2 = 1 := by\n  have h4 : n % 2 = 1 := h2\n  have h5 : n ^ 2 % 2 = 1 := by\n    simp [pow_two, Int.add_emod, Int.mul_emod, h4]\n  omega\n```"
+    },
+    {
+      "id": "tc2-clean-r9",
+      "name": "Result 9",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      have h4 : n ^ 2 % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r10",
+      "name": "Result 10",
+      "content": "```lean\nexact ⟨n / 2, by omega⟩\n```"
+    },
+    {
+      "id": "tc2-clean-r11",
+      "name": "Result 11",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      <;> omega\n    have h3 : Even (n ^ 2) := h\n    have h4 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h3\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r12",
+      "name": "Result 12",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      have h4 : n ^ 2 % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r13",
+      "name": "Result 13",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      have h4 : n ^ 2 % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r14",
+      "name": "Result 14",
+      "content": "```lean\nhave h3 : (n ^ 2 : ℤ) % 2 = 1 := by\n  have h4 : n % 2 = 1 := h2\n  have h5 : n ^ 2 % 2 = 1 := by\n    simp [pow_two, Int.add_emod, Int.mul_emod, h4]\n  omega\n```"
+    },
+    {
+      "id": "tc2-clean-r15",
+      "name": "Result 15",
+      "content": "```lean\nomega\n```"
+    },
+    {
+      "id": "tc2-clean-r16",
+      "name": "Result 16",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      have h4 : n ^ 2 % 2 = 1 := by\n        simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r17",
+      "name": "Result 17",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : (n ^ 2 : ℤ) % 2 = 0 := by\n      have h3 : n % 2 = 0 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n    have h4 : Even n := by\n      have h5 : n % 2 = 0 := h1\n      exact ⟨n / 2, by omega⟩\n    exact h4\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r18",
+      "name": "Result 18",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by\n    omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      <;> omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r19",
+      "name": "Result 19",
+      "content": "```lean\nimport Mathlib\n\ntheorem even_square_implies_even (n : ℤ) : Even (n ^ 2) → Even n := by\n  intro h\n  have h1 : n % 2 = 0 ∨ n % 2 = 1 := by omega\n  rcases h1 with (h1 | h1)\n  · -- n is even\n    have h2 : Even n := by\n      refine' ⟨n / 2, by omega⟩\n    exact h2\n  · -- n is odd\n    have h2 : (n ^ 2 : ℤ) % 2 = 1 := by\n      have h3 : n % 2 = 1 := h1\n      simp [pow_two, Int.add_emod, Int.mul_emod, h3]\n      <;> omega\n    have h3 : (n ^ 2 : ℤ) % 2 = 0 := by\n      obtain ⟨k, hk⟩ := h\n      omega\n    omega\n```"
+    },
+    {
+      "id": "tc2-clean-r20",
+      "name": "Result 20",
+      "content": "```lean\nomega\n```"
+    }
+  ]
+}
